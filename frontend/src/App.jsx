@@ -1,5 +1,5 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import axios from 'axios'
 function App() {
@@ -26,19 +26,23 @@ const [notes,setNotes]=useState( [
   }
 ]
 )
-
-axios.get('https://deployment-v3k9.onrender.com/api/notes')
+function fetch(){
+axios.get('http://localhost:3000/api/notes')
 .then((res)=>{
   setNotes(res.data.notes)
 })
 
+}
+useEffect(()=>{
+  fetch()
+},[])
 
 
   return (
     <>
    <div className="notes">
-    {notes.map(note=>{
-     return <div className="note">
+    {notes.map((note,idx)=>{
+     return <div key={idx}className="note">
       <h1>{note.title}</h1>
       <p>{note.description}</p>
     </div>})}
