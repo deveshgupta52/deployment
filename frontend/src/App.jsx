@@ -27,7 +27,7 @@ const [notes,setNotes]=useState( [
 ]
 )
 function fetch(){
-axios.get('http://localhost:3000/api/notes')
+axios.get('https://deployment-v3k9.onrender.com/api/notes')
 .then((res)=>{
   setNotes(res.data.notes)
 })
